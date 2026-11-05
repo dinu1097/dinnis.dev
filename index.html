@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinnis Kuttikkat | Full Stack PHP Laravel Developer | dinnis.dev</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        laravel: {
+                            500: '#ff2d20',
+                            600: '#e32415',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow {
+            box-shadow: 0 0 50px -10px rgba(255, 45, 32, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-laravel-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-laravel-600 to-indigo-600 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-laravel-500/20 group-hover:scale-105 transition-transform">
+                    D
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-white">dinnis<span class="text-laravel-500">.dev</span></span>
+                    <span class="text-xs text-slate-400 font-medium">Full Stack Laravel Dev</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-laravel-500 transition-colors">About</a>
+                <a href="#skills" class="hover:text-laravel-500 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-laravel-500 transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-laravel-500 transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-laravel-500 transition-colors">Contact</a>
+                <button onclick="openGitHubModal()" class="flex items-center space-x-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>GitHub Guide</span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex md:hidden items-center space-x-3">
+                <button onclick="openGitHubModal()" class="p-2 text-slate-300 hover:text-white bg-slate-800/80 rounded-lg">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </button>
+                <button id="mobile-menu-btn" class="p-2 text-slate-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800/50">About</a>
+            <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800/50">Skills</a>
+            <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800/50">Projects</a>
+            <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800/50">Experience</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800/50">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden">
+        <!-- Background Glow Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-laravel-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Available for Freelance & Full-time Roles</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="bg-gradient-to-r from-laravel-500 via-rose-500 to-indigo-500 bg-clip-text text-transparent">Dinnis Kuttikkat</span>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl font-medium text-slate-300">
+                        Full Stack PHP Laravel Developer building scalable web applications, REST APIs, and high-performance digital solutions across healthcare, e-commerce, education & finance.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-6.5 py-3 rounded-xl bg-laravel-600 hover:bg-laravel-500 text-white font-semibold shadow-lg shadow-laravel-600/30 transition-all flex items-center space-x-2 group">
+                            <span>Explore Projects</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="px-6.5 py-3 rounded-xl glass hover:bg-slate-800 text-slate-200 font-semibold border border-slate-700 transition-all flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-laravel-500"></i>
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Contact Badges -->
+                    <div class="pt-6 border-t border-slate-800/80 flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-slate-400">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-laravel-500"></i>
+                            <span>Mumbai, Maharashtra</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-laravel-500"></i>
+                            <span>+91 8452825985</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-laravel-500"></i>
+                            <span>dinnis067@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic / Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md glass-card rounded-3xl p-6 glow relative border border-slate-800">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">dinnis.dev/stack</span>
+                        </div>
+                        
+                        <div class="py-6 space-y-4 font-mono text-sm">
+                            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 flex items-center justify-between">
+                                <span class="text-laravel-500 flex items-center space-x-2"><i data-lucide="code-2" class="w-4 h-4"></i> <span>Backend</span></span>
+                                <span class="text-slate-300 font-sans text-xs bg-slate-800 px-2.5 py-1 rounded">PHP, Laravel, MySQL</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 flex items-center justify-between">
+                                <span class="text-indigo-400 flex items-center space-x-2"><i data-lucide="layout" class="w-4 h-4"></i> <span>Frontend</span></span>
+                                <span class="text-slate-300 font-sans text-xs bg-slate-800 px-2.5 py-1 rounded">Tailwind, JS, Bootstrap</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 flex items-center justify-between">
+                                <span class="text-emerald-400 flex items-center space-x-2"><i data-lucide="cpu" class="w-4 h-4"></i> <span>Architecture</span></span>
+                                <span class="text-slate-300 font-sans text-xs bg-slate-800 px-2.5 py-1 rounded">MVC, REST APIs, OOP</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 flex items-center justify-between">
+                                <span class="text-amber-400 flex items-center space-x-2"><i data-lucide="git-branch" class="w-4 h-4"></i> <span>Tools</span></span>
+                                <span class="text-slate-300 font-sans text-xs bg-slate-800 px-2.5 py-1 rounded">Git, Postman, Composer</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                            <a href="https://github.com/dinu1097" target="_blank" class="flex items-center space-x-2 text-xs text-slate-300 hover:text-white transition-colors">
+                                <i data-lucide="github" class="w-4 h-4 text-laravel-500"></i>
+                                <span>github.com/dinu1097</span>
+                            </a>
+                            <a href="https://linkedin.com/in/dinnis-kuttikkat-aa14a1187" target="_blank" class="flex items-center space-x-2 text-xs text-slate-300 hover:text-white transition-colors">
+                                <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i>
+                                <span>LinkedIn Profile</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Summary & About Section -->
+    <section id="about" class="py-20 bg-slate-900/40 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-laravel-500">Professional Profile</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Driven by Code, Focused on Scalability</h3>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    Full Stack PHP Laravel Developer with robust freelance experience delivering custom web applications across multiple diverse domains.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-laravel-600/10 border border-laravel-500/20 flex items-center justify-center text-laravel-500">
+                        <i data-lucide="server" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Backend Mastery</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Expertise in designing scalable Laravel backends, robust MySQL database schemas, secure user authentication, and seamless RESTful APIs.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Full Stack Delivery</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Building responsive, high-converting UI interfaces using Tailwind CSS, Bootstrap, JavaScript, and jQuery coupled with third-party payment gateways.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Diverse Domains</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Delivered mission-critical apps in healthcare, e-commerce, online education, recruitment platforms, logistics integration, and finance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-laravel-500">Technical Expertise</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Core Skills & Technologies</h3>
+                <p class="text-slate-300 text-base">The tools and frameworks I use to engineer robust digital solutions.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Skill Card -->
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-laravel-500 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">PHP</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-laravel-500 group-hover:scale-110 transition-transform">
+                        <i data-lucide="wind" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Laravel</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="database" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">MySQL</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-code" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">JavaScript</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="layout-template" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Tailwind CSS</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="box" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Bootstrap</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">REST APIs</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-rose-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="git-pull-request" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Git & GitHub</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Payment Gateways</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">Composer & Postman</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">OOP & MVC</span>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center hover:border-laravel-500/50 transition-all group">
+                    <div class="w-10 h-10 mx-auto mb-3 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="radio" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-semibold text-white text-sm">WebSockets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Projects Section -->
+    <section id="projects" class="py-20 bg-slate-900/40 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-laravel-500">Portfolio Work</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Key Projects & Deliverables</h3>
+                <p class="text-slate-300 text-base">Commercial and freelance applications built from scratch with robust architecture.</p>
+            </div>
+
+            <!-- Key Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-laravel-500/10 text-laravel-500 border border-laravel-500/20">E-Commerce</span>
+                            <i data-lucide="shopping-cart" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Multi Vendor Ecommerce</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Comprehensive multi-vendor e-commerce platform featuring advanced vendor dashboard, automated product inventory, and order management workflow.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / MySQL</span>
+                        <span class="text-laravel-500">Full Stack</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Recruitment</span>
+                            <i data-lucide="users" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Job Referral Platform</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Professional referral platform connecting corporate employees and job seekers, facilitating streamlined candidate referrals and tracking.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>PHP / Laravel / REST API</span>
+                        <span class="text-laravel-500">Full Stack</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Education</span>
+                            <i data-lucide="book-open" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Online Teaching Platform</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Feature-rich digital learning management platform similar to Udemy, supporting course enrollment, instructor dashboards, and video lessons.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / MySQL / Tailwind</span>
+                        <span class="text-laravel-500">Full Stack</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">E-Commerce</span>
+                            <i data-lucide="store" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Lexro Ecommerce</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Complete end-to-end e-commerce website with secure checkout, payment gateway integration, catalog management, and responsive storefront.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>PHP / Payment Gateway</span>
+                        <span class="text-laravel-500">Full Stack</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Backend & API</span>
+                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Dating App Backend</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            High-performance backend REST APIs and business logic engineered for a client dating application, handling user matching and profiles.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / REST APIs</span>
+                        <span class="text-laravel-500">Backend</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Healthcare</span>
+                            <i data-lucide="activity" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Dr. Kiran Matre</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Specialized prescription management software designed to streamline clinical workflows, patient record management, and digital prescriptions.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / MySQL</span>
+                        <span class="text-laravel-500">Healthcare</span>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Healthcare</span>
+                            <i data-lucide="heart-pulse" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Dr. Aniket</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Patient calorie tracking application allowing individuals to monitor dietary intake, caloric progress, and health metrics.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>PHP / Laravel / JS</span>
+                        <span class="text-laravel-500">Health & Fitness</span>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Healthcare</span>
+                            <i data-lucide="shield-plus" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Cure4Pain</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Comprehensive prescription management application focused on pain management clinics and patient treatment tracking.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / MySQL</span>
+                        <span class="text-laravel-500">Healthcare</span>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Analysis</span>
+                            <i data-lucide="pen-tool" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Graphology</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Handwriting-based personality analysis platform evaluating user handwriting patterns to generate psychological and behavioral insights.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Laravel / Algorithm</span>
+                        <span class="text-laravel-500">Web App</span>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition-all flex flex-col justify-between group">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold uppercase px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Logistics</span>
+                            <i data-lucide="truck" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-laravel-500 transition-colors">Sushil Logistics Integration</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Advanced shipping integration connecting multiple third-party shipping partners with an e-commerce platform for automated fulfillment.
+                        </p>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-900/80 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>API Integration / Laravel</span>
+                        <span class="text-laravel-500">Logistics</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Additional Projects Sub-section -->
+            <div class="mt-12">
+                <h4 class="text-lg font-bold text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="folder-git-2" class="w-5 h-5 text-laravel-500"></i>
+                    <span>Additional Projects & Explorations</span>
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-card p-4 rounded-xl border border-slate-800">
+                        <h5 class="font-semibold text-white text-sm mb-1">Nifty50 Irfan</h5>
+                        <p class="text-xs text-slate-400">Financial market tracking and data analytics tool.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl border border-slate-800">
+                        <h5 class="font-semibold text-white text-sm mb-1">Sushant Trading Bot</h5>
+                        <p class="text-xs text-slate-400">Automated algorithmic trading bot script integration.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl border border-slate-800">
+                        <h5 class="font-semibold text-white text-sm mb-1">ImpactAxis</h5>
+                        <p class="text-xs text-slate-400">Social impact and business metrics dashboard.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl border border-slate-800">
+                        <h5 class="font-semibold text-white text-sm mb-1">Patient Alarm App</h5>
+                        <p class="text-xs text-slate-400">Healthcare notification and emergency alarm system.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education, Certifications & Languages Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Education -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-laravel-500/10 border border-laravel-500/20 flex items-center justify-center text-laravel-500">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Education</h4>
+                    <div class="space-y-2">
+                        <p class="font-semibold text-slate-200">Bachelor of Computer Science and Information Technology (BCSIT)</p>
+                        <p class="text-sm text-slate-400">S.M. Shetty College, Powai, Mumbai</p>
+                        <span class="inline-block text-xs font-medium px-2.5 py-1 rounded bg-slate-800 text-slate-300">Currently Pursuing</span>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Certifications</h4>
+                    <div class="space-y-2">
+                        <p class="font-semibold text-slate-200">Laravel Development Certification</p>
+                        <p class="text-sm text-slate-400">Udemy Online Academy</p>
+                        <span class="inline-block text-xs font-medium px-2.5 py-1 rounded bg-slate-800 text-slate-300">Professional Certificate</span>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="languages" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white">Languages Known</h4>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">English</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">Hindi</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">Malayalam</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">Marathi</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900/40 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-xs font-semibold uppercase tracking-widest text-laravel-500">Get In Touch</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Build Something Great Together</h3>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Have a project in mind, looking for a dedicated Full Stack Laravel Developer, or want to collaborate? Reach out directly or send a message.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <a href="mailto:dinnis067@gmail.com" class="flex items-center space-x-4 p-4 rounded-xl glass hover:bg-slate-800/80 transition-colors border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-laravel-500/10 flex items-center justify-center text-laravel-500">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Email Me</span>
+                                <span class="text-sm font-semibold text-white">dinnis067@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <a href="tel:+918452825985" class="flex items-center space-x-4 p-4 rounded-xl glass hover:bg-slate-800/80 transition-colors border border-slate-800">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block">Call / WhatsApp</span>
+                                <span class="text-sm font-semibold text-white">+91 8452825985</span>
+                            </div>
+                        </a>
+
+                        <div class="flex space-x-4 pt-2">
+                            <a href="https://github.com/dinu1097" target="_blank" class="flex-1 p-3 rounded-xl glass hover:bg-slate-800 text-center text-sm font-medium text-slate-200 border border-slate-800 flex items-center justify-center space-x-2">
+                                <i data-lucide="github" class="w-4 h-4 text-laravel-500"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/dinnis-kuttikkat-aa14a1187" target="_blank" class="flex-1 p-3 rounded-xl glass hover:bg-slate-800 text-center text-sm font-medium text-slate-200 border border-slate-800 flex items-center justify-center space-x-2">
+                                <i data-lucide="linkedin" class="w-4 h-4 text-indigo-400"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-6">
+                        <h4 class="text-xl font-bold text-white">Send Me a Message</h4>
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-medium text-slate-300">Your Name</label>
+                                    <input type="text" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-laravel-500 transition-colors" placeholder="John Doe">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-medium text-slate-300">Your Email</label>
+                                    <input type="email" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-laravel-500 transition-colors" placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-slate-300">Subject</label>
+                                <input type="text" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-laravel-500 transition-colors" placeholder="Project Inquiry / Job Opportunity">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-slate-300">Message</label>
+                                <rows="4" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-sm text-slate-100 focus:outline-none focus:border-laravel-500 transition-colors" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-laravel-600 hover:bg-laravel-500 text-white font-semibold shadow-lg shadow-laravel-600/30 transition-all flex items-center justify-center space-x-2">
+                                <span>Send Message</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="font-bold text-white text-base">dinnis<span class="text-laravel-500">.dev</span></span>
+            </div>
+            <p>&copy; 2026 Dinnis Kuttikkat. All rights reserved. Crafted with Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <!-- GitHub Guide Modal -->
+    <div id="github-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-slate-950/80 backdrop-blur-sm p-4">
+        <div class="glass-card max-w-lg w-full p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6 relative">
+            <button onclick="closeGitHubModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-laravel-500/10 border border-laravel-500/20 flex items-center justify-center text-laravel-500">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white">How to Upload to GitHub</h4>
+                    <p class="text-xs text-slate-400">Step-by-step guide for dinnis.dev</p>
+                </div>
+            </div>
+            
+            <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
+                <li>Create a new repository on <a href="https://github.com" target="_blank" class="text-laravel-500 underline">GitHub.com</a> named <code class="bg-slate-900 px-1.5 py-0.5 rounded text-xs text-white">dinu1097</code> or <code class="bg-slate-900 px-1.5 py-0.5 rounded text-xs text-white">dinnis-portfolio</code>.</li>
+                <li>Save this HTML file locally on your computer with the filename <code class="bg-slate-900 px-1.5 py-0.5 rounded text-xs text-white">index.html</code>.</li>
+                <li>Upload the <code class="bg-slate-900 px-1.5 py-0.5 rounded text-xs text-white">index.html</code> file directly through the GitHub web interface (click <span class="text-white font-semibold">"Add file"</span> > <span class="text-white font-semibold">"Upload files"</span>) or via terminal:
+                    <div class="bg-slate-900 p-3 rounded-xl mt-2 font-mono text-xs text-slate-300 border border-slate-800 space-y-1">
+                        <div>git init</div>
+                        <div>git add index.html</div>
+                        <div>git commit -m "Initial commit for dinnis.dev"</div>
+                        <div>git branch -M main</div>
+                        <div>git remote add origin https://github.com/dinu1097/YOUR_REPO_NAME.git</div>
+                        <div>git push -u origin main</div>
+                    </div>
+                </li>
+                <li>Go to your repository <span class="text-white font-semibold">Settings</span> > <span class="text-white font-semibold">Pages</span>, set the source branch to <span class="text-white font-semibold">main / root</span>, and save to instantly publish your live portfolio!</li>
+            </ol>
+
+            <button onclick="closeGitHubModal()" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-colors">
+                Got It!
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-card px-6 py-4 rounded-2xl border border-emerald-500/30 bg-slate-900/90 shadow-xl flex items-center space-x-3 text-emerald-400">
+        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+        <span class="text-sm font-medium text-white">Message sent successfully! I will get back to you soon.</span>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // GitHub Modal Functions
+        function openGitHubModal() {
+            document.getElementById('github-modal').classList.remove('hidden');
+        }
+
+        function closeGitHubModal() {
+            document.getElementById('github-modal').classList.add('hidden');
+        }
+
+        // Contact Form Submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-xl', 'bg-slate-950/90');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-slate-950/90');
+            }
+        });
+    </script>
+</body>
+</html>
